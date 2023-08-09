@@ -1,7 +1,8 @@
 #include "RSA.h"
 using namespace std;
 
-int main() {
+int main() 
+{
   unsigned long long p, q, n, lambda, d, e, m, c;
   unsigned int seed;
 
@@ -22,9 +23,10 @@ int main() {
   cout << "lambda: " << lambda << endl;
   
   do
-    {
-      e = getPrime(2, lambda - 1);
-    } while(lambda % e == 0);
+  {
+    e = getPrime(2, lambda - 1);
+  }
+  while(lambda % e == 0);
   cout << "e: " << e << endl;
 
   d = modInverse(e, lambda);
@@ -40,5 +42,8 @@ int main() {
 
   cout << "Decrypted cipher: " << modExp(c, d, n) << endl;
 
-  return 1;
+  unsigned long long b = brute(c, e, n);
+  cout << "Brute forced: " << b << endl;
+  
+  return 0;
 }
